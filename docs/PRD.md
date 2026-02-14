@@ -33,7 +33,7 @@ Wynik nie stanowi potwierdzenia zgodności prawnej i nie zastępuje kompleksoweg
 
 1. **Hero + formularz leadowy** (URL + email + zgody).
 2. **Zakres szybkiego audytu** (co sprawdzamy, czego nie sprawdzamy).
-3. **Co dostaniesz** (format i przykładowe elementy wyniku).
+3. **Co otrzymasz** (format i przykładowe elementy wyniku).
 4. **Social proof** (logo klientów/opinie/case skrócony).
 5. **FAQ** (zakres, czas odpowiedzi, kwestie prawne).
 6. **Privacy/RODO** (minimalizacja danych, zgody, polityka prywatności).
@@ -43,9 +43,9 @@ Wynik nie stanowi potwierdzenia zgodności prawnej i nie zastępuje kompleksoweg
 
 ### Hero
 - **Nagłówek H1:** „Sprawdź dostępność swojej strony w 15 minut”
-- **Podtytuł:** „Dostaniesz wstępny screening 1-3 podstron i listę najpilniejszych poprawek.”
-- **CTA główne:** „Wyślij do bezpłatnego screeningu”
-- **Helper text:** „To nie jest pełny audyt WCAG. Otrzymasz wstępną ocenę i rekomendacje.”
+- **Podtytuł:** "Otrzymasz audyt 1-3 podstron i listę najpilniejszych poprawek.”
+- **CTA główne:** „Wyślij do bezpłatnego audytu"
+- **Helper text:** „Za audytem Twojej strony stoi expert. Zaufaj nam.”
 
 ### Formularz
 - **Etykieta pola URL:** „Adres strony (URL)”
@@ -145,7 +145,7 @@ Do eventów **nie wysyłamy PII** (brak URL użytkownika i brak emaila w analyti
 ## 11) Backlog i Definition of Done
 
 ### MVP
-- Strona z pełnymi sekcjami: hero/form, zakres, co dostaniesz, social proof, FAQ, privacy, stopka.
+- Strona z pełnymi sekcjami: hero/form, zakres, Co otrzymasz, social proof, FAQ, privacy, stopka.
 - Działający formularz (URL, email, zgody, honeypot).
 - Walidacja klienta + czytelne stany loading/success/error.
 - Disclaimer o ograniczeniach screeningu widoczny przy CTA.
