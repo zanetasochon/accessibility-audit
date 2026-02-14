@@ -17,7 +17,7 @@ Statyczny landing page (React + Mantine + Vite) pod lead magnet:
 ## Konfiguracja Formspree
 
 1. Załóż formularz w Formspree i skopiuj endpoint, np. `https://formspree.io/f/abcxyz`.
-2. W pliku `src/components/ScreeningForm.tsx` podmień:
+2. W pliku `src/components/audytForm.tsx` podmień:
    - `FORMSPREE_ENDPOINT = "https://formspree.io/f/xzdarekl"`
 3. Formularz wysyła pola:
    - `url`

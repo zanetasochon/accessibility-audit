@@ -99,7 +99,6 @@ const socialIconLinkStyles = {
       transform: "translateY(-2px) !important",
       boxShadow: "0 20px 40px rgba(0,0,0,.2) !important",
       filter: "saturate(1.05) !important",
-      outline: "none",
       background: "#C99600",
       borderColor: "#C99600",
     },
@@ -231,7 +230,7 @@ export function LandingPage() {
                       c="blue.7"
                       style={{ letterSpacing: "0.12em", zIndex: 1, position: "relative" }}
                     >
-                      Audyt dostepności
+                      Audyt dostępności
                     </Text>
                     <Title id="hero-title" order={1}>
                       Szybki{` `}
@@ -262,11 +261,11 @@ export function LandingPage() {
                       dostępności Twojej strony
                     </Title>
                     <Text size="lg">
-                      Dostaniesz wstępny audyt dostępności 1-3 podstron i listę najpilniejszych
-                      poprawek.
+                      Dostaniesz wstępny audyt dostępności 1-3 podstron i listę
+                      najpilniejszych poprawek.
                     </Text>
                     <Text c="dimmed">
-                      Screening to wstępna ocena. Pełny audyt WCAG wymaga pogłębionej
+                      To wstępna ocena. Pełny audyt WCAG wymaga pogłębionej
                       analizy.
                     </Text>
                     <Text c="dimmed" size="sm">
@@ -336,7 +335,7 @@ export function LandingPage() {
                   className="scope-eyebrow"
                   style={{ letterSpacing: "0.12em" }}
                 >
-                  Audyt dostepnosci
+                  Audyt dostępności
                 </Text>
                 <Title id="scope-title" order={2} className="scope-heading">
                   Co sprawdzamy
@@ -384,7 +383,7 @@ export function LandingPage() {
                   className="result-eyebrow"
                   style={{ letterSpacing: "0.12em" }}
                 >
-                  Audyt dostepności
+                  Audyt dostępności
                 </Text>
                 <Title id="result-title" order={2} className="result-heading">
                   Co otrzymasz
@@ -408,7 +407,9 @@ export function LandingPage() {
                       }}
                     >
                       <Stack gap="xs">
-                        <Title order={4}>Lista problemów</Title>
+                        <Title order={3} size="h4">
+                          Lista problemów
+                        </Title>
                         <Text size="sm">
                           Krótka lista najważniejszych barier dostępności na stronie.
                         </Text>
@@ -433,7 +434,9 @@ export function LandingPage() {
                       }}
                     >
                       <Stack gap="xs">
-                        <Title order={4}>Priorytety działań</Title>
+                        <Title order={3} size="h4">
+                          Priorytety działań
+                        </Title>
                         <Text size="sm">
                           Jasną informację, które poprawki warto wdrożyć najpierw.
                         </Text>
@@ -458,7 +461,9 @@ export function LandingPage() {
                       }}
                     >
                       <Stack gap="xs">
-                        <Title order={4}>Rekomendacje</Title>
+                        <Title order={3} size="h4">
+                          Rekomendacje
+                        </Title>
                         <Text size="sm">
                           Proponowane kolejne kroki, jeśli chcesz przejść do pełnego
                           audytu.
@@ -496,7 +501,7 @@ export function LandingPage() {
                       className="why-eyebrow"
                       style={{ letterSpacing: "0.12em" }}
                     >
-                      Audyt dostepnosci
+                      Audyt dostępności
                     </Text>
                     <Title id="why-title" order={2} className="why-heading">
                       Dlaczego My?
@@ -550,7 +555,7 @@ export function LandingPage() {
                   className="faq-eyebrow"
                   style={{ letterSpacing: "0.12em" }}
                 >
-                  Audyt dostepnosci
+                  Audyt dostępności
                 </Text>
                 <Title id="faq-title" order={2} className="faq-heading">
                   FAQ
@@ -564,7 +569,7 @@ export function LandingPage() {
                       </Accordion.Panel>
                     </Accordion.Item>
                     <Accordion.Item value="zakres">
-                      <Accordion.Control>Jaki jest zakres screeningu?</Accordion.Control>
+                      <Accordion.Control>Jaki jest zakres audytu?</Accordion.Control>
                       <Accordion.Panel>
                         Analizujemy 1-3 podstrony, łącząc automatyczny skan i krótką
                         weryfikację manualną.
@@ -580,9 +585,9 @@ export function LandingPage() {
 
                   <Accordion variant="separated" radius="md">
                     <Accordion.Item value="cena">
-                      <Accordion.Control>Czy screening jest darmowy?</Accordion.Control>
+                      <Accordion.Control>Czy audyt jest darmowy?</Accordion.Control>
                       <Accordion.Panel>
-                        Tak, wstępny screening jest bezpłatny i służy ocenie, czy warto
+                        Tak, wstępny audyt jest bezpłatny i służy ocenie, czy warto
                         robić pełny audyt.
                       </Accordion.Panel>
                     </Accordion.Item>

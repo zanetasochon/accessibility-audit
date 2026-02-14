@@ -31,7 +31,7 @@
 - [ ] Na stronie jest dokładnie jedno `H1`.
 - [ ] Landmarks: `header`, `main`, `footer` są obecne.
 - [ ] Sekcje MVP są obecne: hero, form, co sprawdzamy, Co otrzymasz, social proof, FAQ, stopka.
-- [ ] Disclaimer o wstępnym screeningu jest widoczny.
+- [ ] Disclaimer o wstępnym audytu jest widoczny.
 - [ ] Treści RODO są spójne między formularzem i `/#/privacy`.
 
 ## 5) Analityka (placeholder)

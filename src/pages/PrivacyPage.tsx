@@ -44,7 +44,7 @@ export function PrivacyPage() {
 
             <Box component="section" aria-labelledby="administrator">
               <Stack gap="xs">
-                <Title order={3} id="administrator">
+                <Title order={2} id="administrator">
                   Administrator danych
                 </Title>
                 <Text>
@@ -56,32 +56,25 @@ export function PrivacyPage() {
 
             <Box component="section" aria-labelledby="zakres">
               <Stack gap="xs">
-                <Title order={3} id="zakres">
+                <Title order={2} id="zakres">
                   Zakres danych
                 </Title>
                 <List withPadding spacing="xs">
-                  <List.Item>Adres strony (URL) do screeningu.</List.Item>
+                  <List.Item>Adres strony (URL) do audytu.</List.Item>
                   <List.Item>E-mail kontaktowy.</List.Item>
-                  <List.Item>
-                    Informacje o zgodach: kontaktowej (obowiązkowej) oraz marketingowej
-                    (opcjonalnej).
-                  </List.Item>
+                  <List.Item>Informacje o zgodzie kontaktowej (obowiązkowej).</List.Item>
                 </List>
               </Stack>
             </Box>
 
             <Box component="section" aria-labelledby="cel">
               <Stack gap="xs">
-                <Title order={3} id="cel">
+                <Title order={2} id="cel">
                   Cel i podstawa przetwarzania
                 </Title>
                 <List withPadding spacing="xs">
                   <List.Item>
-                    Obsługa zgłoszenia i kontakt w sprawie wyniku screeningu.
-                  </List.Item>
-                  <List.Item>
-                    Wysyłka materiałów edukacyjnych wyłącznie po wyrażeniu opcjonalnej
-                    zgody marketingowej.
+                    Obsługa zgłoszenia i kontakt w sprawie wyniku audytu.
                   </List.Item>
                 </List>
               </Stack>
@@ -89,7 +82,7 @@ export function PrivacyPage() {
 
             <Box component="section" aria-labelledby="retencja">
               <Stack gap="xs">
-                <Title order={3} id="retencja">
+                <Title order={2} id="retencja">
                   Okres przechowywania danych
                 </Title>
                 <Text>
@@ -101,14 +94,13 @@ export function PrivacyPage() {
 
             <Box component="section" aria-labelledby="prawa">
               <Stack gap="xs">
-                <Title order={3} id="prawa">
+                <Title order={2} id="prawa">
                   Twoje prawa
                 </Title>
                 <List withPadding spacing="xs">
                   <List.Item>Dostęp do danych i ich kopii.</List.Item>
                   <List.Item>Sprostowanie danych.</List.Item>
                   <List.Item>Usunięcie danych lub ograniczenie przetwarzania.</List.Item>
-                  <List.Item>Wycofanie zgody marketingowej w dowolnym momencie.</List.Item>
                 </List>
               </Stack>
             </Box>

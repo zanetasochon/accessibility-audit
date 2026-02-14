@@ -32,7 +32,7 @@ Zaimplementować wszystkie sekcje MVP: hero z formularzem, zakres audytu, Co otr
 Acceptance criteria:
 
 - W `index.html` są wszystkie sekcje z PRD i logiczna hierarchia nagłówków.
-- Widoczny disclaimer, że to wstępny screening, nie pełny audyt WCAG/prawny.
+- Widoczny disclaimer, że to wstępny audyt, nie pełny audyt WCAG/prawny.
 - Microcopy w języku polskim zgodna z PRD (nagłówki, opisy, FAQ).
 - Układ responsywny dla mobile i desktop.
 

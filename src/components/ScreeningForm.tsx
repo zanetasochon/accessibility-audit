@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconAlertCircle, IconCheck } from "@tabler/icons-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
 
@@ -54,6 +54,8 @@ export function ScreeningForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const formElementRef = useRef<HTMLFormElement | null>(null);
+  const successAlertRef = useRef<HTMLDivElement | null>(null);
+  const errorAlertRef = useRef<HTMLDivElement | null>(null);
 
   const form = useForm<FormValues>({
     initialValues: {
@@ -170,18 +172,37 @@ export function ScreeningForm() {
     },
   );
 
+  useEffect(() => {
+    if (isSuccess) {
+      successAlertRef.current?.focus();
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (submitError) {
+      errorAlertRef.current?.focus();
+    }
+  }, [submitError]);
+
   if (isSuccess) {
     return (
-      <Alert
-        variant="light"
-        color="green"
-        title="Dziękujemy! Zgłoszenie zostało wysłane."
-        icon={<IconCheck size={18} aria-hidden="true" />}
+      <Box
+        ref={successAlertRef}
+        tabIndex={-1}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
       >
-        <Box component="div" aria-live="polite">
-          Dzięki! Zgłoszenie dotarło. Wrócimy do Ciebie z odpowiedzią tak szybko jak to możliwe, zwykle w 1-2 dni robocze.
-        </Box>
-      </Alert>
+        <Alert
+          variant="light"
+          color="green"
+          title="Dziękujemy! Zgłoszenie zostało wysłane."
+          icon={<IconCheck size={18} aria-hidden="true" />}
+        >
+          Dzięki! Zgłoszenie dotarło. Wrócimy do Ciebie z odpowiedzią tak szybko jak to
+          możliwe, zwykle w 1-2 dni robocze.
+        </Alert>
+      </Box>
     );
   }
 
@@ -245,7 +266,7 @@ export function ScreeningForm() {
           Wyślij do audytu dostępności
         </Button>
 
-        <Fieldset variant="unstyled">
+        <Fieldset variant="unstyled" legend="Zgody">
           <Stack gap="sm" align="center">
             <Checkbox
               required
@@ -260,7 +281,6 @@ export function ScreeningForm() {
               }}
               {...form.getInputProps("consentContact", { type: "checkbox" })}
             />
-
           </Stack>
         </Fieldset>
 
@@ -273,16 +293,22 @@ export function ScreeningForm() {
         </Text>
 
         {submitError && (
-          <Alert
-            color="red"
-            variant="light"
-            icon={<IconAlertCircle size={18} aria-hidden="true" />}
-            title="Wystąpił błąd"
+          <Box
+            ref={errorAlertRef}
+            tabIndex={-1}
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
           >
-            <Box component="div" aria-live="polite">
+            <Alert
+              color="red"
+              variant="light"
+              icon={<IconAlertCircle size={18} aria-hidden="true" />}
+              title="Wystąpił błąd"
+            >
               {submitError}
-            </Box>
-          </Alert>
+            </Alert>
+          </Box>
         )}
       </Stack>
     </Box>

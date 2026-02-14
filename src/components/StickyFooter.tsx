@@ -19,7 +19,6 @@ const footerSocialLinkStyles = {
       transform: "translateY(-2px)",
       boxShadow: "0 10px 22px rgba(0,0,0,.14)",
       backgroundColor: "#005CE6",
-      outline: "none",
     },
     "&:active": {
       transform: "translateY(0)",

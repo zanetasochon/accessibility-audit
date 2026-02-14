@@ -11,8 +11,37 @@ body,
   min-height: 100%;
 }
 
+html {
+  scroll-padding-top: 104px;
+  scroll-padding-bottom: 96px;
+}
+
+[id$="-title"] {
+  scroll-margin-top: 104px;
+}
+
 body {
   margin: 0;
+}
+
+:where(
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    [tabindex]:not([tabindex="-1"]),
+    .mantine-Anchor-root,
+    .mantine-Button-root,
+    .mantine-ActionIcon-root,
+    .mantine-Checkbox-input,
+    .mantine-TextInput-input,
+    .mantine-Accordion-control
+  ):focus-visible {
+  outline: 3px solid #0a70ff !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 6px rgba(10, 112, 255, 0.38) !important;
 }
 
 /* Skip link */
@@ -160,6 +189,15 @@ body {
 }
 
 @media (max-width: 48em) {
+  html {
+    scroll-padding-top: 92px;
+    scroll-padding-bottom: 24px;
+  }
+
+  [id$="-title"] {
+    scroll-margin-top: 92px;
+  }
+
   .site-footer {
     position: static !important;
   }
@@ -199,12 +237,12 @@ body {
 
   .why-content .mantine-Text-root,
   .why-content .mantine-List-itemLabel {
-    text-align: justify;
+    text-align: left;
   }
 
   .faq-section .mantine-Accordion-panel,
   .faq-section .mantine-Accordion-content {
-    text-align: justify;
+    text-align: left;
   }
 
   .sticky-footer-inner {

@@ -3,7 +3,7 @@
 ## 1) Cel biznesowy i KPI
 
 ### Cel biznesowy
-Zwiększenie liczby wartościowych leadów B2B przez prosty formularz „URL + email” oraz dostarczenie wstępnego screeningu dostępności jako pretekst do dalszego kontaktu sprzedażowo-konsultacyjnego.
+Zwiększenie liczby wartościowych leadów B2B przez prosty formularz „URL + email” oraz dostarczenie wstępnego audytu dostępności jako pretekst do dalszego kontaktu sprzedażowo-konsultacyjnego.
 
 ### KPI
 - **Submit rate (primary):** odsetek sesji z wysłaniem formularza, cel MVP: **>= 4%**.
@@ -26,7 +26,7 @@ Zwiększenie liczby wartościowych leadów B2B przez prosty formularz „URL + e
 - Orientacyjna informacja o potencjalnym wpływie na UX/biznes.
 
 ### Disclaimer (obowiązkowy, widoczny)
-To jest **wstępny screening dostępności**, a nie pełny audyt WCAG ani opinia prawna.  
+To jest **wstępny audyt dostępności**, a nie pełny audyt WCAG ani opinia prawna.  
 Wynik nie stanowi potwierdzenia zgodności prawnej i nie zastępuje kompleksowego audytu eksperckiego.
 
 ## 4) Sekcje strony
@@ -52,7 +52,7 @@ Wynik nie stanowi potwierdzenia zgodności prawnej i nie zastępuje kompleksoweg
 - **Placeholder URL:** „https://twojastrona.pl”
 - **Etykieta pola email:** „Email służbowy”
 - **Placeholder email:** „nazwa@firma.pl”
-- **Checkbox obowiązkowy (kontakt):** „Wyrażam zgodę na kontakt w sprawie wyniku screeningu.”
+- **Checkbox obowiązkowy (kontakt):** „Wyrażam zgodę na kontakt w sprawie wyniku audytu.”
 - **Checkbox opcjonalny (marketing):** „Chcę otrzymywać materiały o dostępności i newsletter (opcjonalnie).”
 - **Link:** „Polityka prywatności”
 
@@ -66,11 +66,11 @@ Wynik nie stanowi potwierdzenia zgodności prawnej i nie zastępuje kompleksoweg
 
 ### Success page / success state
 - **Nagłówek:** „Dziękujemy! Zgłoszenie zostało wysłane.”
-- **Treść:** „W ciągu 1-2 dni roboczych wyślemy wstępny wynik screeningu na podany adres email.”
+- **Treść:** „W ciągu 1-2 dni roboczych wyślemy wstępny wynik audytu na podany adres email.”
 - **Dodatkowy CTA:** „Wróć do strony głównej”
 
 ### FAQ (krótkie)
-- **Czy to pełny audyt WCAG?** Nie, to szybki screening i lista priorytetów.
+- **Czy to pełny audyt WCAG?** Nie, to szybki audyt i lista priorytetów.
 - **Ile podstron analizujecie?** Od 1 do 3 kluczowych podstron.
 - **Kiedy dostanę wynik?** Zwykle w 1-2 dni robocze.
 - **Czy wynik to potwierdzenie zgodności prawnej?** Nie, do tego potrzebny jest pełny audyt.
@@ -148,7 +148,7 @@ Do eventów **nie wysyłamy PII** (brak URL użytkownika i brak emaila w analyti
 - Strona z pełnymi sekcjami: hero/form, zakres, Co otrzymasz, social proof, FAQ, privacy, stopka.
 - Działający formularz (URL, email, zgody, honeypot).
 - Walidacja klienta + czytelne stany loading/success/error.
-- Disclaimer o ograniczeniach screeningu widoczny przy CTA.
+- Disclaimer o ograniczeniach audytu widoczny przy CTA.
 - Eventy analytics: `submit_attempt`, `validation_error`, `submit_success`, `submit_fail`.
 
 ### Nice-to-have
