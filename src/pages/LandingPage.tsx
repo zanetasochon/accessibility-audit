@@ -258,7 +258,7 @@ export function LandingPage() {
                           }}
                         />
                       </Box>{" "}
-                      dostępności Twojej strony
+                      dostępności Twojej strony www
                     </Title>
                     <Text size="lg">
                       Dostaniesz wstępny audyt dostępności 1-3 podstron i listę
