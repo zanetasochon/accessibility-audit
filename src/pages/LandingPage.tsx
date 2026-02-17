@@ -109,6 +109,59 @@ const socialIconLinkStyles = {
   },
 };
 
+type WhyExpert = {
+  name: string;
+  imageSrc: string;
+  imageAlt: string;
+  secondaryImageSrc?: string;
+  secondaryImageAlt?: string;
+  imageMaxWidth: number;
+  imageRightOnDesktop: boolean;
+  paragraphs: string[];
+  bullets: string[];
+};
+
+const whyExperts: WhyExpert[] = [
+  {
+    name: "Żaneta Sochoń",
+    imageSrc: "/assets/photo-zaneta-sochon-white.png",
+    imageAlt: "Żaneta Sochoń",
+    imageMaxWidth: 460,
+    imageRightOnDesktop: false,
+    paragraphs: [
+      "Nazywam się Żaneta Sochoń. Ukończyłam Wydział Prawa w Białymstoku, Wydział Pedagogiki i Psychologii w Białymstoku oraz równolegle rozwijam kompetencje techniczne na studiach magisterskich w Polsko-Japońskiej Akademii Technik Komputerowych w Warszawie. Jestem certyfikowanym Google UX Designerem oraz audytorem dostępności WCAG. Na co dzień pracuję jako Frontend Engineer w T-mobile Polska projektując i wdrażając rozwiązania zgodne z dyrektywą o dostępności z dnia 28 czerwca 2025 roku.",
+      "W ramach komercyjnych audytów pomagam firmom zmniejszać ryzyko kar, ograniczać koszty poprawek i uporządkować priorytety zmian.",
+    ],
+    bullets: [
+      "Łączę perspektywę UX, frontendu i dostępności w jednym procesie.",
+      "Komunikuję ryzyka prostym językiem, bez prawniczego żargonu.",
+      "Ustalam priorytety działań: co poprawić najpierw, aby szybciej zmniejszyć ryzyko.",
+      "Wspieram zespoły produktowe i developerskie we wdrożeniu poprawek.",
+      "Pokazuję, które zmiany najszybciej poprawią użyteczność i konwersję.",
+    ],
+  },
+  {
+    name: "Mateusz Bogolubow",
+    imageSrc: "/assets/photo-mateusz-bogolubow.png",
+    imageAlt: "Mateusz Bogolubow",
+    secondaryImageSrc: "/assets/photo-mateusz-bogolubow-secondary.png",
+    secondaryImageAlt: "Mateusz Bogolubow podczas nagrania",
+    imageMaxWidth: 460,
+    imageRightOnDesktop: true,
+    paragraphs: [
+      "Od ponad dekady łączę praktyczne wytwarzanie oprogramowania z edukacją programistów. Zrealizowałem blisko 100 projektów komercyjnych, przeszkoliłem setki osób i konsekwentnie rozwijam standardy jakości w produktach cyfrowych.",
+      "W DevMentor skupiam się na podejściu, które daje efekt biznesowy tzn. klarowne priorytety, szybkie decyzje wdrożeniowe i rozwiązania, które są trwałe technicznie, a jednocześnie zrozumiałe dla zespołu.",
+    ],
+    bullets: [
+      "Ponad 10 lat doświadczenia w biznesie software i realizacji projektów komercyjnych.",
+      "Ponad 400 osób nauczonych programowania i skutecznie przygotowanych do pracy w IT.",
+      "Wyróżnienie Mentor Roku oraz wieloletnia praktyka prowadzenia szkoleń i mentoringu.",
+      "Silne zaplecze frontend/fullstack i nacisk na jakość wdrożeń oraz architekturę rozwiązań.",
+      "Pragmatyczne podejście zawierające się w rekomendacji gotowych działań, a nie tylko w teorii.",
+    ],
+  },
+];
+
 export function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -518,73 +571,136 @@ export function LandingPage() {
             </Box>
 
             <Box component="section" aria-labelledby="why-title">
-              <Grid gutter={{ base: 80, md: "xl" }} align="center" justify="center">
-                <Grid.Col span={{ base: 12, md: 5 }}>
-                  <Image
-                    src="/assets/photo-zaneta-sochon-white.png"
-                    alt="Żaneta Sochoń"
-                    radius="lg"
-                    w="100%"
-                    maw={380}
-                    style={{
-                      marginInline: "auto",
-                      backgroundColor: "#ffffff",
-                    }}
-                  />
-                </Grid.Col>
+              <Stack gap="md">
+                <Stack gap="md" pb="xl">
+                  <Text
+                    size="sm"
+                    fw={700}
+                    tt="uppercase"
+                    c="blue.7"
+                    ta="center"
+                    className="why-eyebrow"
+                    style={{ letterSpacing: "0.12em" }}
+                  >
+                    Audyt dostępności
+                  </Text>
+                  <Title id="why-title" order={2} ta="center" className="why-heading">
+                    Dlaczego My?
+                  </Title>
+                </Stack>
 
-                <Grid.Col span={{ base: 12, md: 7 }} className="why-content">
-                  <Stack gap="md" maw={640} mx="auto">
-                    <Text
-                      size="sm"
-                      fw={700}
-                      tt="uppercase"
-                      c="blue.7"
-                      className="why-eyebrow"
-                      style={{ letterSpacing: "0.12em" }}
-                    >
-                      Audyt dostępności
-                    </Text>
-                    <Title id="why-title" order={2} className="why-heading">
-                      Dlaczego My?
-                    </Title>
-                    <Text>
-                      Nazywam się Żaneta Sochoń. Ukończyłam Wydział Prawa w Białymstoku, Wydział
-                      Pedagogiki i Psychologii w Białymstoku oraz równolegle rozwijam kompetencje
-                      techniczne na studiach magisterskich w Polsko-Japońskiej Akademii Technik
-                      Komputerowych w Warszawie. Jestem certyfikowanym Google UX Designerem oraz audytorem dostępności WCAG.
-                      Na co dzień pracuję jako Frontend Engineer w międzynarodowej firmie projektując i wdrażając rozwiązania zgodne z dyrektywą o dostępności z dnia 28 czerwca 2025 roku.
-                    </Text>
-                    <Text>
-                      W ramach komercyjnych audytów pomagam firmom zmniejszać ryzyko
-                      kar, ograniczać koszty poprawek i uporządkować priorytety zmian.
-                    </Text>
-                    <List
-                      spacing="md"
-                      icon={<IconChevronRight size={18} aria-hidden="true" />}
-                      withPadding
-                      className="chevron-list"
-                    >
-                      <List.Item>
-                        Łączę perspektywę UX, frontendu i dostępności w jednym procesie.
-                      </List.Item>
-                      <List.Item>
-                        Komunikuję ryzyka prostym językiem, bez prawniczego żargonu.
-                      </List.Item>
-                      <List.Item>
-                        Ustalam priorytety działań: co poprawić najpierw, aby szybciej
-                        zmniejszyć ryzyko.
-                      </List.Item>
-                      <List.Item>
-                        Wspieram zespoły produktowe i developerskie we wdrożeniu poprawek.
-                      </List.Item>
-                      <List.Item>
-                        Pokazuję, które zmiany najszybciej poprawią użyteczność i konwersję.
-                      </List.Item>
-                    </List>
-                  </Stack>
-                </Grid.Col>
-              </Grid>
+                <Stack gap={96}>
+                  {whyExperts.map((expert) => (
+                    <Grid key={expert.name} gutter={{ base: 80, md: "xl" }} align="center" justify="center">
+                    {expert.imageRightOnDesktop ? (
+                      <>
+                        <Grid.Col span={{ base: 12, md: 7 }} className="why-content">
+                          <Stack gap="md" maw={640} mx="auto">
+                            <Title order={3}>{expert.name}</Title>
+                            {expert.paragraphs.map((paragraph) => (
+                              <Text key={paragraph}>{paragraph}</Text>
+                            ))}
+                            <List
+                              spacing="md"
+                              icon={<IconChevronRight size={18} aria-hidden="true" />}
+                              withPadding
+                              className="chevron-list"
+                            >
+                              {expert.bullets.map((bullet) => (
+                                <List.Item key={bullet}>{bullet}</List.Item>
+                              ))}
+                            </List>
+                          </Stack>
+                        </Grid.Col>
+
+                        <Grid.Col span={{ base: 12, md: 5 }}>
+                          <Stack gap="md" align="center">
+                            <Image
+                              src={expert.imageSrc}
+                              alt={expert.imageAlt}
+                              radius="lg"
+                              w={expert.imageMaxWidth}
+                              maw="100%"
+                              fit="contain"
+                              style={{
+                                marginInline: "auto",
+                                backgroundColor: "#ffffff",
+                              }}
+                            />
+                            {expert.secondaryImageSrc && (
+                              <Image
+                                src={expert.secondaryImageSrc}
+                                alt={expert.secondaryImageAlt}
+                                radius="lg"
+                                w={expert.imageMaxWidth}
+                                maw="100%"
+                                fit="contain"
+                                style={{
+                                  marginInline: "auto",
+                                  backgroundColor: "#ffffff",
+                                }}
+                              />
+                            )}
+                          </Stack>
+                        </Grid.Col>
+                      </>
+                    ) : (
+                      <>
+                        <Grid.Col span={{ base: 12, md: 5 }}>
+                          <Stack gap="md" align="center">
+                            <Image
+                              src={expert.imageSrc}
+                              alt={expert.imageAlt}
+                              radius="lg"
+                              w={expert.imageMaxWidth}
+                              maw="100%"
+                              fit="contain"
+                              style={{
+                                marginInline: "auto",
+                                backgroundColor: "#ffffff",
+                              }}
+                            />
+                            {expert.secondaryImageSrc && (
+                              <Image
+                                src={expert.secondaryImageSrc}
+                                alt={expert.secondaryImageAlt}
+                                radius="lg"
+                                w={expert.imageMaxWidth}
+                                maw="100%"
+                                fit="contain"
+                                style={{
+                                  marginInline: "auto",
+                                  backgroundColor: "#ffffff",
+                                }}
+                              />
+                            )}
+                          </Stack>
+                        </Grid.Col>
+
+                        <Grid.Col span={{ base: 12, md: 7 }} className="why-content">
+                          <Stack gap="md" maw={640} mx="auto">
+                            <Title order={3}>{expert.name}</Title>
+                            {expert.paragraphs.map((paragraph) => (
+                              <Text key={paragraph}>{paragraph}</Text>
+                            ))}
+                            <List
+                              spacing="md"
+                              icon={<IconChevronRight size={18} aria-hidden="true" />}
+                              withPadding
+                              className="chevron-list"
+                            >
+                              {expert.bullets.map((bullet) => (
+                                <List.Item key={bullet}>{bullet}</List.Item>
+                              ))}
+                            </List>
+                          </Stack>
+                        </Grid.Col>
+                      </>
+                    )}
+                    </Grid>
+                  ))}
+                </Stack>
+              </Stack>
             </Box>
 
             <Box component="section" aria-labelledby="faq-title" className="faq-section">
