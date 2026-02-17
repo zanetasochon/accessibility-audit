@@ -17,7 +17,7 @@ import {
   Title,
 } from "@mantine/core";
 import { IconCheck, IconChevronRight } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ScreeningForm } from "../components/ScreeningForm";
 import { StickyFooter } from "../components/StickyFooter";
@@ -112,6 +112,22 @@ const socialIconLinkStyles = {
 export function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const scrollToSection =
+    (sectionId: string) => (event: MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      section.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    };
+
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24);
     onScroll();
@@ -156,16 +172,40 @@ export function LandingPage() {
               </Anchor>
 
               <Group gap="lg" visibleFrom="md">
-                <Anchor href="#scope-title" underline="never" style={headerLinkStyle} className="nav-link-decore">
+                <Anchor
+                  href="#scope-title"
+                  onClick={scrollToSection("scope-title")}
+                  underline="never"
+                  style={headerLinkStyle}
+                  className="nav-link-decore"
+                >
                   Co sprawdzamy
                 </Anchor>
-                <Anchor href="#result-title" underline="never" style={headerLinkStyle} className="nav-link-decore">
+                <Anchor
+                  href="#result-title"
+                  onClick={scrollToSection("result-title")}
+                  underline="never"
+                  style={headerLinkStyle}
+                  className="nav-link-decore"
+                >
                   Co otrzymasz
                 </Anchor>
-                <Anchor href="#why-title" underline="never" style={headerLinkStyle} className="nav-link-decore">
+                <Anchor
+                  href="#why-title"
+                  onClick={scrollToSection("why-title")}
+                  underline="never"
+                  style={headerLinkStyle}
+                  className="nav-link-decore"
+                >
                   Dlaczego DevMentor
                 </Anchor>
-                <Anchor href="#faq-title" underline="never" style={headerLinkStyle} className="nav-link-decore">
+                <Anchor
+                  href="#faq-title"
+                  onClick={scrollToSection("faq-title")}
+                  underline="never"
+                  style={headerLinkStyle}
+                  className="nav-link-decore"
+                >
                   FAQ
                 </Anchor>
               </Group>
@@ -275,6 +315,7 @@ export function LandingPage() {
                       <Button
                         component="a"
                         href="#why-title"
+                        onClick={scrollToSection("why-title")}
                         styles={primaryHeroButtonStyles}
                         className="hero-btn-primary hero-cta-button"
                       >
@@ -283,6 +324,7 @@ export function LandingPage() {
                       <Button
                         component="a"
                         href="#result-title"
+                        onClick={scrollToSection("result-title")}
                         styles={secondaryHeroButtonStyles}
                         className="hero-btn-secondary hero-cta-button"
                         rightSection={
