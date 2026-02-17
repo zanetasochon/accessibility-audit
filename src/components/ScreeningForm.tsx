@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xzdarekl";
+const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/i8plt1j222q4mw82aseqhiyo8h3x9mu5";
 
 type FormValues = {
   url: string;
@@ -41,12 +41,95 @@ function normalizeWebsiteUrl(value: string): string | null {
   }
 
   try {
-    // URL parser validates host + overall URL format.
     const normalized = new URL(withProtocol);
     return normalized.toString();
   } catch {
     return null;
   }
+}
+
+function extractEmailDomain(email: string): string | null {
+  const trimmed = email.trim().toLowerCase();
+  const atIndex = trimmed.lastIndexOf("@");
+  if (atIndex < 1 || atIndex === trimmed.length - 1) {
+    return null;
+  }
+
+  return trimmed.slice(atIndex + 1);
+}
+
+function normalizeHost(value: string): string {
+  return value.toLowerCase().replace(/^www\./, "");
+}
+
+function isEmailDomainMatchingWebsite(email: string, websiteUrl: string): boolean {
+  const emailDomain = extractEmailDomain(email);
+  if (!emailDomain) {
+    return false;
+  }
+
+  try {
+    const websiteHost = normalizeHost(new URL(websiteUrl).hostname);
+    const emailHost = normalizeHost(emailDomain);
+
+    return (
+      websiteHost === emailHost ||
+      websiteHost.endsWith(`.${emailHost}`) ||
+      emailHost.endsWith(`.${websiteHost}`)
+    );
+  } catch {
+    return false;
+  }
+}
+
+type EmailRule = {
+  isValid: (email: string) => boolean;
+  message: string;
+};
+
+const EMAIL_RULES: EmailRule[] = [
+  {
+    isValid: (email) => email.length > 0,
+    message: "Podaj adres e-mail.",
+  },
+  {
+    isValid: (email) => email.includes("@"),
+    message: "Adres e-mail musi zawierać znak @.",
+  },
+  {
+    isValid: (email) => email.split("@").length === 2,
+    message: "Adres e-mail może zawierać tylko jeden znak @.",
+  },
+  {
+    isValid: (email) => {
+      const [localPart = ""] = email.split("@");
+      return localPart.length > 0;
+    },
+    message: "Brakuje części przed znakiem @ (np. imie).",
+  },
+  {
+    isValid: (email) => {
+      const [, domainPart = ""] = email.split("@");
+      return domainPart.length > 0;
+    },
+    message: "Brakuje domeny po znaku @ (np. firma.pl).",
+  },
+  {
+    isValid: (email) => {
+      const [, domainPart = ""] = email.split("@");
+      return domainPart.includes(".");
+    },
+    message: "Domena e-mail musi zawierać kropkę (np. firma.pl).",
+  },
+  {
+    isValid: (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+    message: "Wpisz poprawny adres e-mail, np. imie@firma.pl.",
+  },
+];
+
+function validateEmailFormat(value: string): string | null {
+  const email = value.trim();
+  return EMAIL_RULES.find((rule) => !rule.isValid(email))?.message ?? null;
 }
 
 export function ScreeningForm() {
@@ -74,13 +157,15 @@ export function ScreeningForm() {
         }
         return null;
       },
-      email: (value) => {
-        if (!value.trim()) {
-          return "Podaj adres email.";
+      email: (value, values) => {
+        const formatError = validateEmailFormat(value);
+        if (formatError) return formatError;
+
+        const normalizedUrl = normalizeWebsiteUrl(values.url);
+        if (normalizedUrl && !isEmailDomainMatchingWebsite(value, normalizedUrl)) {
+          return "Użyj adresu e-mail w domenie audytowanej strony.";
         }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
-          return "Wpisz poprawny adres email.";
-        }
+
         return null;
       },
       consentContact: (value) =>
@@ -109,6 +194,12 @@ export function ScreeningForm() {
         return;
       }
 
+      if (!isEmailDomainMatchingWebsite(values.email, normalizedUrl)) {
+        form.setFieldError("email", "Użyj adresu e-mail w domenie audytowanej strony.");
+        focusFirstInvalidControl();
+        return;
+      }
+
       if (values.website.trim()) {
         setIsSuccess(true);
         return;
@@ -116,15 +207,15 @@ export function ScreeningForm() {
 
       setIsSubmitting(true);
       try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
+        const response = await fetch(MAKE_WEBHOOK_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
-            url: normalizedUrl,
             email: values.email.trim(),
+            website: normalizedUrl,
           }),
         });
 
