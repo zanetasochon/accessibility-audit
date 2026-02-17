@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
 
 const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/i8plt1j222q4mw82aseqhiyo8h3x9mu5";
+const HOSTNAME_WITH_TLD_REGEX =
+  /^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})$/i;
 
 type FormValues = {
   url: string;
@@ -25,23 +27,25 @@ type FormValues = {
 };
 
 function normalizeWebsiteUrl(value: string): string | null {
-  const trimmedValue = value.trim();
+  const trimmedValue = value.trim().replace(/\s+/g, "");
   if (!trimmedValue) {
     return null;
   }
 
   const withProtocol = /^https?:\/\//i.test(trimmedValue)
     ? trimmedValue
-    : trimmedValue.toLowerCase().startsWith("www.")
-      ? `https://${trimmedValue}`
-      : null;
-
-  if (!withProtocol) {
-    return null;
-  }
+    : `https://${trimmedValue}`;
 
   try {
     const normalized = new URL(withProtocol);
+    if (!/^https?:$/i.test(normalized.protocol)) {
+      return null;
+    }
+
+    if (!HOSTNAME_WITH_TLD_REGEX.test(normalized.hostname)) {
+      return null;
+    }
+
     return normalized.toString();
   } catch {
     return null;
@@ -153,7 +157,7 @@ export function ScreeningForm() {
           return "Podaj adres URL.";
         }
         if (!normalizeWebsiteUrl(value)) {
-          return "Wpisz poprawny adres URL (http://, https:// lub www.).";
+          return "Wpisz poprawny adres URL, np. twojadomena.pl.";
         }
         return null;
       },
@@ -189,7 +193,7 @@ export function ScreeningForm() {
 
       const normalizedUrl = normalizeWebsiteUrl(values.url);
       if (!normalizedUrl) {
-        form.setFieldError("url", "Wpisz poprawny adres URL (http://, https:// lub www.).");
+        form.setFieldError("url", "Wpisz poprawny adres URL, np. twojadomena.pl.");
         focusFirstInvalidControl();
         return;
       }
